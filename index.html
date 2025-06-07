@@ -1,113 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mubii Collection - موبائل سکنز</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&family=Roboto&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Roboto', sans-serif;
-      background: linear-gradient(135deg, #e3f2fd, #ffffff);
-      color: #222;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-      color: #2c3e50;
-    }
-
-    .urdu-title {
-      font-family: 'Noto Nastaliq Urdu', serif;
-      font-size: 1.5rem;
-      color: #34495e;
-      margin-bottom: 30px;
-    }
-
-    .skin-preview {
-      border: 2px solid #ddd;
-      border-radius: 10px;
-      padding: 20px;
-      background: #fff;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      max-width: 350px;
-      text-align: center;
-    }
-
-    .skin-preview img {
-      width: 100%;
-      border-radius: 10px;
-      margin-bottom: 15px;
-    }
-
-    .button {
-      background-color: #007bff;
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 8px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      margin-top: 10px;
-    }
-
-    .button:hover {
-      background-color: #0056b3;
-    }
-
-    .note {
-      font-family: 'Noto Nastaliq Urdu', serif;
-      font-size: 1rem;
-      margin-top: 20px;
-      color: #555;
-    }
-  </style>
-</head>
-<body>
-
-  <h1>Mubii Collection</h1>
-  <div class="urdu-title">موبائل سکنز</div>
-
-  <div class="skin-preview">
-    <img src="images/skin1.jpg" alt="Skin 1">
-    <button class="button" onclick="alert('ڈاؤنلوڈ شروع ہو رہا ہے...')">
-      آڑر دینے کے لیے یہاں کلک کریں
-    </button>
-    <div class="note">تمام ڈیزائنز ہائی کوالٹی میں دستیاب ہیں</div>
-  </div>
-
-</body>
-</html>
- 
-<!DOCTYPE html>
 <html lang="ur" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mubii Mobile Skins</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mubii Collection - موبائل سکنز</title>
   <style>
-    body { font-family: 'Arial', sans-serif; background: #f5f5f5; margin: 0; padding: 20px; }
-    h1 { text-align: center; color: #333; }
-    .gallery { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
-    .gallery img { width: 200px; border-radius: 10px; box-shadow: 0 0 5px rgba(0,0,0,0.2); }
-    .button-link { display: block; width: fit-content; margin: 30px auto; padding: 10px 20px; background: #007bff; color: white; border-radius: 5px; text-decoration: none; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f5f5;
+      text-align: center;
+      padding: 50px 20px;
+      direction: rtl;
+    }
+    h1 {
+      font-size: 2.5em;
+      color: #333;
+    }
+    .card {
+      background: white;
+      max-width: 400px;
+      margin: 30px auto;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    .btn {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      margin-top: 15px;
+      text-decoration: none;
+      display: inline-block;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background-color: #0056b3;
+    }
+    .note {
+      font-size: 0.9em;
+      color: #555;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
-  <h1>موبائل سکنز - Mubii Collection</h1>
-  <div class="gallery">
-    <img src="https://drive.google.com/uc?id=1bZdfeI2V1zvd8UiKHb0ZzQ3XoglC2NSS" alt="Skin 1" />
-    <!-- مزید تصاویر یہاں لگائیں -->
+
+  <h1>Mubii Collection - موبائل سکنز</h1>
+
+  <div class="card">
+    <h3>Skin 1</h3>
+    <img src="images/skin1.jpg" alt="Skin 1">
+    <br>
+    <a href="downloads/skin1.zip" class="btn">ڈاؤن لوڈ کرنے کے لیے یہاں کلک کریں</a>
+    <p class="note">تمام فائلز زپ فارمیٹ میں دستیاب ہیں</p>
   </div>
-  <a href="https://forms.gle/fSiyysw2Xnnu1idL6" class="button-link" target="_blank">آرڈر دینے کے لیے یہاں کلک کریں</a>
+
 </body>
 </html>
