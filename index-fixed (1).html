@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>Mobii Collection - موبائل اسکنز آرڈر فارم</title>
+  <style>
+    body {
+      font-family: 'Noto Nastaliq Urdu', serif;
+      background-color: #f2f2f2;
+      text-align: center;
+    }
+    h1 {
+      background-color: #003300;
+      color: white;
+      padding: 20px;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 200px;
+      padding: 10px;
+    }
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    input {
+      margin-top: 8px;
+      padding: 5px;
+      width: 90%;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Mobii Collection - موبائل اسکنز آرڈر فارم</h1>
+  <p>نیچے سے اسکن منتخب کریں اور <b>quantity</b> درج کریں</p>
+  <div class="gallery">
+
+    <div class="card">
+      <p>Skin-1</p>
+      <img src="https://drive.google.com/uc?export=view&id=1Dm8KFv8t1HZMuxiaGFTE7wrkxlSjiAvx" alt="Skin-1">
+      <p>Skin-1</p>
+      <input type="number" placeholder="مقدار درج کریں" id="qty1">
+    </div>
+    
+    <div class="card">
+      <p>Skin-2</p>
+      <img src="https://drive.google.com/uc?export=view&id=1bZdfeI2V1zvd8UiKHb0ZzQ3XoglC2NSS" alt="Skin-2">
+      <p>Skin-2</p>
+      <input type="number" placeholder="مقدار درج کریں" id="qty2">
+    </div>
+    
+    <div class="card">
+      <p>Skin-3</p>
+      <img src="https://drive.google.com/uc?export=view&id=19cuFLVf-Kmnd2X2zJvGGyZFVqBjlflKV" alt="Skin-3">
+      <p>Skin-3</p>
+      <input type="number" placeholder="مقدار درج کریں" id="qty3">
+    </div>
+    
+    <div class="card">
+      <p>Skin-4</p>
+      <img src="https://drive.google.com/uc?export=view&id=1K3hi-8kL3jGdKuduXPflRQtXHkJ9CTll" alt="Skin-4">
+      <p>Skin-4</p>
+      <input type="number" placeholder="مقدار درج کریں" id="qty4">
+    </div>
+    
+  </div>
+  <button onclick="sendOrder()">آرڈر بھیجیں</button>
+
+  <script>
+    function sendOrder() {
+      let message = "📦 *آرڈر کی تفصیل:*\n";
+
+      var qty1 = document.getElementById("qty1").value;
+      if (qty1 && qty1 > 0) {
+        message += "Skin-1 - مقدار: " + qty1 + "\n";
+      }
+    
+      var qty2 = document.getElementById("qty2").value;
+      if (qty2 && qty2 > 0) {
+        message += "Skin-2 - مقدار: " + qty2 + "\n";
+      }
+    
+      var qty3 = document.getElementById("qty3").value;
+      if (qty3 && qty3 > 0) {
+        message += "Skin-3 - مقدار: " + qty3 + "\n";
+      }
+    
+      var qty4 = document.getElementById("qty4").value;
+      if (qty4 && qty4 > 0) {
+        message += "Skin-4 - مقدار: " + qty4 + "\n";
+      }
+    
+      if (message === "📦 *آرڈر کی تفصیل:*\n") {
+        alert("برائے مہربانی کم از کم ایک مقدار درج کریں۔");
+        return;
+      }
+      let whatsappNumber = "923214557971"; // Your number without +
+      let url = "https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(message);
+      window.open(url, "_blank");
+    }
+  </script>
+</body>
+</html>
