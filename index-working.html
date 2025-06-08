@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mobii Collection - موبائل اسکنز آرڈر فارم</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f2f2f2;
+      margin: 0;
+      text-align: center;
+    }
+    header {
+      background: #003300;
+      color: white;
+      padding: 1rem;
+      font-size: 1.5rem;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 2rem auto;
+      gap: 1rem;
+      max-width: 1200px;
+    }
+    .card {
+      background: white;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      width: 200px;
+    }
+    .card img {
+      max-width: 100%;
+      height: auto;
+    }
+    .card input {
+      margin-top: 0.5rem;
+      width: 80%;
+    }
+    button {
+      margin-top: 2rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    موبائل اسکنز آرڈر فارم - Mobii Collection
+  </header>
+  <h2>نیچے سے اسکنز منتخب کریں اور <b>quantity</b> درج کریں</h2>
+  <div class="gallery">
+    <div class="card" data-code="SKN-001">
+      <img src="https://drive.google.com/uc?export=view&id=1K3hi-8kL3jGdKuduXPflRQtXHkJ9CTll" alt="SKN-001" />
+      <h3>SKN-001</h3>
+      <input type="number" placeholder="Qty" min="0" />
+    </div>
+    <div class="card" data-code="SKN-002">
+      <img src="https://drive.google.com/uc?export=view&id=19cuFLVf-Kmnd2X2zJvGGyZFVqBjlflKV" alt="SKN-002" />
+      <h3>SKN-002</h3>
+      <input type="number" placeholder="Qty" min="0" />
+    </div>
+    <div class="card" data-code="SKN-003">
+      <img src="https://drive.google.com/uc?export=view&id=1bZdfeI2V1zvd8UiKHb0ZzQ3XoglC2NSS" alt="SKN-003" />
+      <h3>SKN-003</h3>
+      <input type="number" placeholder="Qty" min="0" />
+    </div>
+    <div class="card" data-code="SKN-004">
+      <img src="https://drive.google.com/uc?export=view&id=1Dm8KFv8t1HZMuxiaGFTE7wrkxlSjiAvx" alt="SKN-004" />
+      <h3>SKN-004</h3>
+      <input type="number" placeholder="Qty" min="0" />
+    </div>
+  </div>
+  <button onclick="sendOrder()">آرڈر بھیجیں</button>
+
+  <script>
+    function sendOrder() {
+      const cards = document.querySelectorAll('.card');
+      let message = 'السلام علیکم! میں درج ذیل اسکنز آرڈر کرنا چاہتا ہوں:%0A';
+
+      cards.forEach(card => {
+        const code = card.getAttribute('data-code');
+        const qty = card.querySelector('input').value;
+        if (qty && qty > 0) {
+          message += `🧾 ${code}: ${qty}%0A`;
+        }
+      });
+
+      const phone = '923214557971';
+      const url = `https://wa.me/${phone}?text=${message}`;
+      window.open(url, '_blank');
+    }
+  </script>
+</body>
+</html>
