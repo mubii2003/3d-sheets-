@@ -1,67 +1,100 @@
-
 <!DOCTYPE html>
 <html lang="ur" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mobii Collection - آرڈر فارم</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>موبائل اسکنز آرڈر فارم - Mobii Collection</title>
   <style>
-    body { font-family: 'Noto Nastaliq Urdu', serif; background: #f2f2f2; margin: 0; padding: 0; text-align: center; }
-    header { background: #003300; color: white; padding: 20px; font-size: 24px; }
-    h2 { margin-top: 20px; }
-    .gallery { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin: 40px auto; max-width: 1200px; }
-    .card { background: white; padding: 20px; border-radius: 10px; width: 200px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    .card img { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; }
-    .card h3 { margin: 10px 0 5px; }
-    .card input { width: 100%; padding: 5px; text-align: center; }
-    .btn { background: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; margin-top: 20px; cursor: pointer; font-size: 18px; }
+    body {
+      font-family: 'Noto Nastaliq Urdu', serif;
+      background: #f1f1f1;
+      margin: 0;
+      padding: 0;
+      direction: rtl;
+      text-align: center;
+    }
+    header {
+      background: #003300;
+      color: white;
+      padding: 15px;
+      font-size: 1.5rem;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 20px;
+    }
+    .item {
+      background: white;
+      margin: 10px;
+      padding: 10px;
+      border-radius: 10px;
+      width: 200px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .item img {
+      width: 100%;
+      border-radius: 5px;
+    }
+    .item input {
+      margin-top: 5px;
+      width: 100%;
+      padding: 5px;
+    }
+    button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+      margin: 20px auto;
+    }
   </style>
 </head>
 <body>
-  <header>Mobii Collection - موبائل اسکنز آرڈر فارم</header>
-  <h2>نیچے سے اسکنز منتخب کریں اور quantity درج کریں</h2>
+  <header>موبائل اسکنز آرڈر فارم - Mobii Collection</header>
+  <p>نیچے سے اسکنز منتخب کریں اور <strong>quantity</strong> درج کریں</p>
   <div class="gallery" id="gallery"></div>
-  <button class="btn" onclick="sendOrder()">آرڈر بھیجیں</button>
+  <button onclick="sendOrder()">آرڈر بھیجیں</button>
 
   <script>
-    const phone = "923214557971"; // WhatsApp number
-    const products = [
-      { code: "SKN-004", image: "https://drive.google.com/uc?export=view&id=1Dm8KFv8t1HZMuxiaGFTE7wrkxlSjiAvx" },
-      { code: "SKN-003", image: "https://drive.google.com/uc?export=view&id=1bZdfeI2V1zvd8UiKHb0ZzQ3XoglC2NSS" },
-      { code: "SKN-002", image: "https://drive.google.com/uc?export=view&id=19cuFLVf-Kmnd2X2zJvGGyZFVqBjlflKV" },
-      { code: "SKN-001", image: "https://drive.google.com/uc?export=view&id=1K3hi-8kL3jGdKuduXPflRQtXHkJ9CTll" }
+    const imageList = [
+      { id: '1Dm8KFv8t1HZMuxiaGFTE7wrkxlSjiAvx', code: 'Skin-1' },
+      { id: '1bZdfeI2V1zvd8UiKHb0ZzQ3XoglC2NSS', code: 'Skin-2' },
+      { id: '19cuFLVf-Kmnd2X2zJvGGyZFVqBjlflKV', code: 'Skin-3' },
+      { id: '1K3hi-8kL3jGdKuduXPflRQtXHkJ9CTll', code: 'Skin-4' },
     ];
 
-    const gallery = document.getElementById("gallery");
+    const gallery = document.getElementById('gallery');
 
-    products.forEach(p => {
-      const card = document.createElement("div");
-      card.className = "card";
-      card.innerHTML = `
-        <h3>${p.code}</h3>
-        <img src="${p.image}" alt="${p.code}" />
-        <p><strong>${p.code}</strong></p>
-        <input type="number" min="0" placeholder="Qty" id="${p.code}" />
+    imageList.forEach(({ id, code }) => {
+      const div = document.createElement('div');
+      div.className = 'item';
+      div.innerHTML = `
+        <img src="https://drive.google.com/uc?export=view&id=${id}" alt="${code}" />
+        <p>${code}</p>
+        <input type="number" placeholder="مقدار درج کریں" min="0" id="${code}" />
       `;
-      gallery.appendChild(card);
+      gallery.appendChild(div);
     });
 
     function sendOrder() {
-      const selected = products.map(p => {
-        const qty = document.getElementById(p.code).value;
-        return qty && parseInt(qty) > 0 ? `${p.code} = ${qty}` : null;
+      const selected = imageList.map(({ code }) => {
+        const qty = document.getElementById(code).value;
+        return qty ? `${code}: ${qty}` : null;
       }).filter(Boolean);
 
       if (selected.length === 0) {
-        alert("برائے مہربانی کم از کم ایک اسکن منتخب کریں");
+        alert('براہ کرم کم از کم ایک اسکن منتخب کریں');
         return;
       }
 
-      const msg = encodeURIComponent("میرا آرڈر:
-" + selected.join("
-"));
-      const url = `https://wa.me/${phone}?text=${msg}`;
-      window.open(url, "_blank");
+      const message = encodeURIComponent(`آرڈر کی تفصیل:\n${selected.join('\n')}`);
+      const phone = '03214557971';
+      window.open(`https://wa.me/92${phone}?text=${message}`, '_blank');
     }
   </script>
 </body>
