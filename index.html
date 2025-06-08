@@ -1,115 +1,83 @@
 <!DOCTYPE html>
 <html lang="ur" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mubii Collection - آرڈر فارم</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet"/>
+  <meta charset="UTF-8">
+  <title>Mobii Collection</title>
   <style>
-    body {
-      font-family: 'Noto Nastaliq Urdu', serif;
-      background-color: #f4f4f4;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-    }
-    header {
-      background-color: #003d1f;
-      color: white;
-      padding: 1rem;
-      font-size: 1.8rem;
-    }
-    .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      padding: 2rem;
-    }
-    .card {
-      background-color: white;
-      border-radius: 10px;
-      padding: 1rem;
-      width: 220px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    }
-    .card img {
-      width: 100%;
-      border-radius: 6px;
-    }
-    .code {
-      margin-top: 0.5rem;
-      font-weight: bold;
-      color: #444;
-    }
-    .card input {
-      width: 60px;
-      padding: 0.3rem;
-      margin-top: 0.5rem;
-      text-align: center;
-    }
-    button {
-      background-color: #007bff;
-      color: white;
-      border: none;
-      padding: 0.8rem 1.5rem;
-      font-size: 1rem;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 2rem;
-    }
+    body { font-family: 'Noto Nastaliq Urdu', serif; background: #f0f0f0; margin: 0; padding: 0; text-align: center; }
+    header { background-color: #004225; color: white; padding: 20px; font-size: 24px; }
+    .gallery { display: flex; flex-wrap: wrap; justify-content: center; margin: 20px; gap: 20px; }
+    .card { background: white; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); padding: 15px; width: 200px; }
+    .card img { width: 100%; height: auto; border-radius: 5px; }
+    .card input { margin-top: 5px; width: 100%; padding: 8px; text-align: center; }
+    button { padding: 10px 20px; font-size: 18px; margin: 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
   </style>
 </head>
 <body>
-  <header>Mubii Collection - موبائل سکنز آرڈر فارم</header>
-  <h2>نیچے سے سکینز منتخب کریں اور quantity درج کریں</h2>
 
-  <div class="gallery" id="gallery"></div>
+<header>موبائل اسکنز آرڈر فارم - Mobii Collection</header>
+<h2>نیچے سے اسکنز منتخب کریں اور quantity درج کریں</h2>
 
-  <button onclick="sendOrder()">آرڈر بھیجیں</button>
+<div class="gallery" id="gallery"></div>
 
-  <script>
-    // 📦 آپ اپنی تصاویر اور کوڈ یہاں بدل سکتے ہیں
-    const skins = [
-      { code: "SKN-001", img: "https://mubii2003.github.io/3d-sheets-/sheet1.png" },
-      { code: "SKN-002", img: "https://mubii2003.github.io/3d-sheets-/sheet2.png" },
-      { code: "SKN-003", img: "https://mubii2003.github.io/3d-sheets-/sheet3.png" }
-    ];
+<button onclick="sendOrder()">آرڈر بھیجیں</button>
 
-    const gallery = document.getElementById("gallery");
+<script>
+  const images = [
+    { code: "SKN-001", imageId: "1dJvOlq2nUuR6N6DJeRZbCmZikPqSnIUq" },
+    { code: "SKN-002", imageId: "1LrAs0JxY2NlI3QUxyH8ZqONLVJJ4k5oC" },
+    { code: "SKN-003", imageId: "1uMm5Zd8KzW7P1yEoS3Zp8VUja5W7r_gO" }
+  ];
 
-    skins.forEach((skin, index) => {
-      const card = document.createElement("div");
-      card.className = "card";
-      card.innerHTML = `
-        <img src="${skin.img}" alt="Skin ${index + 1}" />
-        <div class="code">${skin.code}</div>
-        <input type="number" min="0" id="qty-${index}" placeholder="Qty" />
-      `;
-      gallery.appendChild(card);
+  const gallery = document.getElementById('gallery');
+
+  images.forEach((item, index) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    const img = document.createElement('img');
+    img.src = `https://drive.google.com/uc?export=view&id=${item.imageId}`;
+    img.alt = item.code;
+
+    const title = document.createElement('h3');
+    title.textContent = `Skin ${index + 1}`;
+
+    const code = document.createElement('strong');
+    code.textContent = item.code;
+
+    const qty = document.createElement('input');
+    qty.type = 'number';
+    qty.placeholder = 'Qty';
+    qty.min = 0;
+    qty.id = `qty-${item.code}`;
+
+    card.appendChild(img);
+    card.appendChild(title);
+    card.appendChild(code);
+    card.appendChild(qty);
+    gallery.appendChild(card);
+  });
+
+  function sendOrder() {
+    const number = "03214557971"; // آپ کا WhatsApp نمبر
+    let message = "آرڈر کی تفصیل:\n";
+
+    images.forEach(item => {
+      const qty = document.getElementById(`qty-${item.code}`).value;
+      if (qty && parseInt(qty) > 0) {
+        message += `${item.code}: ${qty} pcs\n`;
+      }
     });
 
-    function sendOrder() {
-      let message = "السلام علیکم!\nمیں درج ذیل سکینز آرڈر کرنا چاہتا ہوں:\n";
-      let hasOrder = false;
-
-      skins.forEach((skin, index) => {
-        const qty = document.getElementById(`qty-${index}`).value;
-        if (qty && parseInt(qty) > 0) {
-          hasOrder = true;
-          message += `- ${skin.code} = ${qty}\n`;
-        }
-      });
-
-      if (!hasOrder) {
-        alert("براہ کرم کم از کم ایک quantity درج کریں۔");
-        return;
-      }
-
-      const phone = "923214557971"; // ← آپ کا واٹس ایپ نمبر
-      const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-      window.open(url, "_blank");
+    if (message === "آرڈر کی تفصیل:\n") {
+      alert("براہ کرم کم از کم ایک quantity درج کریں");
+      return;
     }
-  </script>
+
+    const url = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank");
+  }
+</script>
+
 </body>
 </html>
